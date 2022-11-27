@@ -193,7 +193,7 @@ const App = () => {
 
         <CardsContainer>
             {CardDetails.map((cardDetail: CardDetailType) => (
-                <CardContentBox cardDetails={cardDetail}/>
+                <CardContentBox key={cardDetail.currencyName} {...cardDetail}/>
             ))}
         </CardsContainer>
     </Layout>

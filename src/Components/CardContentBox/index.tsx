@@ -32,7 +32,6 @@ const CardIcon = styled.div<{backgroundColor: string;}>`
 `;
 
 const TextBox = styled.div`
-    //todo?:
     position: relative;
     box-sizing: border-box;
     background: #14172B;
@@ -53,28 +52,12 @@ const TextBox = styled.div`
     text-align: center;
     color: #ECF0FF;
     opacity: 0.9;
-`;
 
-//  position: relative;
-//   box-sizing: border-box;
-//
-//   background: #000;
-//   background-clip: padding-box;
-//   border: solid 5px transparent;
-//   border-radius: 1em;
-//
-//   &:before {
-//     content: "";
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     bottom: 0;
-//     left: 0;
-//     z-index: -1;
-//     margin: -5px;
-//     border-radius: inherit;
-//     background: linear-gradient(to right, red, orange);
-//   }
+    background: linear-gradient(#14172B, #14172B) padding-box,
+              linear-gradient(180deg, rgba(236, 240, 255, 0.1) 0%, rgba(59, 63, 87, 0) 100%) border-box;
+    border-radius: 50em;
+    border: 1px solid transparent;
+`;
 
 const CardBody = styled.div`
     position: relative;
@@ -142,13 +125,14 @@ type CardDetailType = {
     percentageChange: string;
     isChangePositive: boolean;
     totalValueLocked: string;
+    background: string;
     pairs: {
         name: string;
         icon: string;
     }[];
 };
 
-const CardContentBox = ({cardDetails}) => {
+const CardContentBox: React.FC<CardDetailType> = (cardDetails) => {
     return (
         <CardContainer>
             <CardIcon backgroundColor={cardDetails.background}>
@@ -158,7 +142,7 @@ const CardContentBox = ({cardDetails}) => {
                 <CardImage src={cardContent} alt={"card"}/>
                 <CardContent>
                     <CoinName>{cardDetails.currencyName} ({cardDetails.shortFormName})</CoinName>
-                    <TextBox style={{marginTop: '8px'}}>
+                    <TextBox style={{marginTop: '8px', marginLeft: '-4px'}}>
                         ${cardDetails.price}
                         <PercentageChangeAmount
                             isChangePositive={cardDetails.isChangePositive}
@@ -171,8 +155,8 @@ const CardContentBox = ({cardDetails}) => {
                     <TextBox style={{marginTop: '4px'}}>${cardDetails.totalValueLocked}</TextBox>
                     <SubtitleText>TVL</SubtitleText>
                     <PairsBox>
-                        {cardDetails.pairs.map((pair) => (
-                            <img height={'22px'} width={'22px'} src={pair.icon} alt={pair.name}/>
+                        {cardDetails.pairs.map((pairItem) => (
+                            <img key={pairItem.name} height={'22px'} width={'22px'} src={pairItem.icon} alt={pairItem.name}/>
                         ))}
                     </PairsBox>
                     <SubtitleText style={{marginBottom: 'calc(50px + 11px)'}}>Popular pairs</SubtitleText>
