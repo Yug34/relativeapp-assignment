@@ -6,12 +6,12 @@ import { px2vw } from "../../utils";
 
 const CardContainer = styled(Flex)`
     justify-content: center;
-
     height: clamp(300px, ${px2vw(350)}, 350px);
     width: clamp(240px, ${px2vw(290)}, 290px);
 `;
 
 const CardImage = styled.img`
+    position: absolute;
     width: 100%;
     height: 100%;
 `;
@@ -32,13 +32,10 @@ const CardIcon = styled.div<{backgroundColor: string;}>`
 `;
 
 const TextBox = styled.div`
-    position: relative;
     box-sizing: border-box;
     background: #14172B;
     border-radius: 17px;
-
     width: 100%;
-    max-width: 242px;
     height: 40px;
     display: flex;
     align-items: center;
@@ -47,8 +44,8 @@ const TextBox = styled.div`
     font-family: 'Tomorrow';
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 31px;
+    font-size: clamp(13px, ${px2vw(16)}, 16px);
+    line-height: clamp(24px, ${px2vw(31)}, 31px);
     text-align: center;
     color: #ECF0FF;
     opacity: 0.9;
@@ -61,11 +58,11 @@ const TextBox = styled.div`
 
 const CardBody = styled.div`
     position: relative;
+    width: 100%;
 `;
 
 const CardContent = styled(Flex)`
     height: 100%;
-    position: absolute;
     flex-direction: column;
     width: 100%;
     left: 0px;
@@ -79,8 +76,8 @@ const CoinName = styled.div`
     font-family: 'Tomorrow';
     font-style: normal;
     font-weight: 600;
-    font-size: 12px;
-    line-height: 31px;
+    font-size: clamp(10px, ${px2vw(12)}, 12px);
+    line-height: clamp(24px, ${px2vw(31)}, 31px);
     text-align: center;
     color: #737BAE;
     opacity: 0.9;
@@ -102,8 +99,8 @@ const SubtitleText = styled.div`
     font-family: 'Tomorrow';
     font-style: normal;
     font-weight: 600;
-    font-size: 12px;
-    line-height: 31px;
+    font-size: clamp(10px, ${px2vw(12)}, 12px);
+    line-height: clamp(24px, ${px2vw(31)}, 31px);
     text-align: center;
     color: #5A5F7D;
     opacity: 0.9;
@@ -144,9 +141,7 @@ const CardContentBox: React.FC<CardDetailType> = (cardDetails) => {
                     <CoinName>{cardDetails.currencyName} ({cardDetails.shortFormName})</CoinName>
                     <TextBox style={{marginTop: '8px', marginLeft: '-4px'}}>
                         ${cardDetails.price}
-                        <PercentageChangeAmount
-                            isChangePositive={cardDetails.isChangePositive}
-                        >
+                        <PercentageChangeAmount isChangePositive={cardDetails.isChangePositive}>
                             {cardDetails.isChangePositive ? '+' : '-'}
                             {cardDetails.percentageChange}%
                         </PercentageChangeAmount>
