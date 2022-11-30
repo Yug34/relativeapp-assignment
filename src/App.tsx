@@ -10,14 +10,15 @@ import bitcoin from "./assets/bitcoin.svg"
 import eth from "./assets/eth.svg"
 import shib from "./assets/shib.svg"
 import solana from "./assets/solana.svg"
+import { px2vw } from "./utils";
 
 const Layout = styled(Flex)`
+    box-sizing: border-box;
+    padding: 40px 20px 80px 20px;
     justify-content: center;
     align-items: center;
 
     flex-direction: column;
-
-    column-gap: 69px;
     flex-wrap: wrap;
 
     height: 100%;
@@ -31,7 +32,13 @@ const Layout = styled(Flex)`
 `;
 
 const CardsContainer = styled(Flex)`
-    justify-content: space-around;
+    box-sizing: border-box;
+    margin-top: clamp(54px, ${px2vw(108)}, 108px);
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 8px;
+    column-gap: 42px;
+    row-gap: 42px;
 `;
 
 const StyledText = styled.div`

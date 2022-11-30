@@ -17,10 +17,10 @@ const CardImage = styled.img`
 `;
 
 const CardIcon = styled.div<{backgroundColor: string;}>`
-    margin-top: -50px;
+    margin-top: calc(clamp(42px, ${px2vw(50)}, 50px) * -1);
     position: absolute;
-    height: 100px;
-    width: 100px;
+    height: clamp(85px, ${px2vw(100)}, 100px);
+    width: clamp(85px, ${px2vw(100)}, 100px);
     border-radius: 50%;
     
     display: flex;
@@ -32,6 +32,8 @@ const CardIcon = styled.div<{backgroundColor: string;}>`
 `;
 
 const TextBox = styled.div`
+    display: flex;
+
     box-sizing: border-box;
     background: #14172B;
     border-radius: 17px;
@@ -62,6 +64,8 @@ const CardBody = styled.div`
 `;
 
 const CardContent = styled(Flex)`
+    padding: 0 24px;
+    box-sizing: border-box;
     height: 100%;
     flex-direction: column;
     width: 100%;
@@ -84,6 +88,7 @@ const CoinName = styled.div`
 `;
 
 const PairsBox = styled(Flex)`
+    z-index: 2;
     width: fit-content;
     height: 40px;
     background: #14172B;
@@ -93,6 +98,8 @@ const PairsBox = styled(Flex)`
     column-gap: 13px;
     padding: 0 15px;
     margin-top: 12px;
+    background: #14172B;
+    border-radius: 29.5px;
 `;
 
 const SubtitleText = styled.div`
@@ -109,7 +116,7 @@ const SubtitleText = styled.div`
 const PercentageChangeAmount = styled.div<{isChangePositive: boolean;}>`
     position: absolute;
     color: ${(props) => props.isChangePositive ? '#00FFA3' : '#FF4D4D'};
-    right: 15px;
+    right: calc(24px + 15px);
     font-weight: 600;
     font-size: 12px;
 `;
@@ -133,7 +140,7 @@ const CardContentBox: React.FC<CardDetailType> = (cardDetails) => {
     return (
         <CardContainer>
             <CardIcon backgroundColor={cardDetails.background}>
-                <img height={'50%'} width={'50%'} src={cardDetails.icon} alt={'currency'}/>
+                <img src={cardDetails.icon} alt={'currency'}/>
             </CardIcon>
             <CardBody>
                 <CardImage src={cardContent} alt={"card"}/>
