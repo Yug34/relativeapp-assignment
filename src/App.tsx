@@ -37,8 +37,8 @@ const CardsContainer = styled(Flex)`
     justify-content: center;
     flex-wrap: wrap;
     padding: 0 8px;
-    column-gap: 42px;
-    row-gap: 42px;
+    column-gap: clamp(50px, ${px2vw(70)}, 70px);
+    row-gap: 50px;
 `;
 
 const StyledText = styled.div`

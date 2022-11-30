@@ -33,13 +33,11 @@ const CardIcon = styled.div<{backgroundColor: string;}>`
 
 const TextBox = styled.div`
     display: flex;
-
     box-sizing: border-box;
     background: #14172B;
     border-radius: 17px;
     width: 100%;
     height: 40px;
-    display: flex;
     align-items: center;
     justify-content: center;
     
@@ -64,7 +62,7 @@ const CardBody = styled.div`
 `;
 
 const CardContent = styled(Flex)`
-    padding: 0 24px;
+    padding: 0 clamp(8px, ${px2vw(24)}, 24px);
     box-sizing: border-box;
     height: 100%;
     flex-direction: column;
@@ -116,8 +114,8 @@ const SubtitleText = styled.div`
 const PercentageChangeAmount = styled.div<{isChangePositive: boolean;}>`
     position: absolute;
     color: ${(props) => props.isChangePositive ? '#00FFA3' : '#FF4D4D'};
-    right: calc(24px + 15px);
-    font-weight: 600;
+    right: clamp(20px, ${px2vw(39)}, 39px);
+    font-weight: 500;
     font-size: 12px;
 `;
 
@@ -146,6 +144,7 @@ const CardContentBox: React.FC<CardDetailType> = (cardDetails) => {
                 <CardImage src={cardContent} alt={"card"}/>
                 <CardContent>
                     <CoinName>{cardDetails.currencyName} ({cardDetails.shortFormName})</CoinName>
+                    {/*8px and -4px displacement offset in the design:*/}
                     <TextBox style={{marginTop: '8px', marginLeft: '-4px'}}>
                         ${cardDetails.price}
                         <PercentageChangeAmount isChangePositive={cardDetails.isChangePositive}>
